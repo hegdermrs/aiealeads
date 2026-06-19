@@ -5,7 +5,7 @@ import { SplitLink } from "../components/SplitButton";
 export default function HormoziFounder() {
   return (
     <section id="founder" className="oc-section scroll-mt-24">
-      <div className="oc-section-inner">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader
           eyebrow="Who runs this"
           title="Built by a business owner, not an AI theorist"

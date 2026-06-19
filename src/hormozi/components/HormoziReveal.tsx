@@ -4,10 +4,13 @@ export default function HormoziReveal({
   children,
   className = "",
   delay = 0,
+  gridChild = false,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** Use when this reveal is a direct child of a CSS grid (bento, fit, testimonials). */
+  gridChild?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -32,7 +35,7 @@ export default function HormoziReveal({
   return (
     <div
       ref={ref}
-      className={`hormozi-reveal ${className}`}
+      className={`hormozi-reveal${gridChild ? " hormozi-reveal--grid-child" : ""}${className ? ` ${className}` : ""}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

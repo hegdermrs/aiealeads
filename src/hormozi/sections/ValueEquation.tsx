@@ -36,25 +36,35 @@ const VALUE_ITEMS: {
 export default function ValueEquation() {
   return (
     <section id="value" className="oc-section scroll-mt-24">
-      <div className="oc-section-inner">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader
           eyebrow="Why this works"
           title="The value equation"
           lede="A great program increases your dream outcome, raises the odds you succeed, shortens the timeline, and reduces the effort required from you."
         />
 
-        <div className="oc-bento">
-          {VALUE_ITEMS.map((item, i) => (
-            <HormoziReveal key={item.title} delay={i * 70}>
-              <article className={`oc-surface-card oc-bento-cell ${item.span ?? ""}`}>
-                <div className="oc-bento-icon">
-                  <item.icon size={22} strokeWidth={1.5} aria-hidden="true" />
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            </HormoziReveal>
-          ))}
+        <div className="oc-value-split">
+          <div className="oc-bento">
+            {VALUE_ITEMS.map((item, i) => (
+              <HormoziReveal key={item.title} delay={i * 70} gridChild>
+                <article className={`oc-surface-card oc-bento-cell ${item.span ?? ""}`}>
+                  <div className="oc-bento-icon">
+                    <item.icon size={22} strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              </HormoziReveal>
+            ))}
+          </div>
+
+          <figure className="oc-split-media oc-section-media oc-section-media--aside">
+            <img
+              src="/imgs/gap-desert.png"
+              alt="The gap between knowing AI matters and actually installing it in your business."
+              loading="lazy"
+            />
+          </figure>
         </div>
       </div>
     </section>

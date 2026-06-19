@@ -28,7 +28,7 @@ const STEPS = [
 export default function FutureVision() {
   return (
     <section className="oc-section">
-      <div className="oc-section-inner">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader
           eyebrow="The outcome"
           title="Imagine 12 weeks from now"
@@ -48,6 +48,14 @@ export default function FutureVision() {
             ))}
           </ol>
         </HormoziReveal>
+
+        <figure className="oc-section-media oc-section-media--cinema">
+          <img
+            src="/imgs/zero-to-hero.png"
+            alt="A business owner progressing from uncertainty to confident AI implementation."
+            loading="lazy"
+          />
+        </figure>
 
         <HormoziReveal delay={160}>
           <p className="oc-outcome-kicker">

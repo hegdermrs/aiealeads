@@ -4,6 +4,15 @@ import HormoziWaitlistForm from "../components/HormoziWaitlistForm";
 export default function FinalCta() {
   return (
     <section className="oc-purple-cta">
+      <img
+        className="oc-purple-cta-bg"
+        src="/imgs/hero-yacht.png"
+        alt=""
+        loading="lazy"
+        aria-hidden="true"
+      />
+      <div className="oc-purple-cta-scrim" aria-hidden="true" />
+
       <div className="oc-purple-cta-inner">
         <HormoziReveal>
           <h2 className="oc-purple-cta-title">

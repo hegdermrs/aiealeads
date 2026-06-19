@@ -34,7 +34,7 @@ export default function HormoziTestimonials() {
 
   return (
     <section id="stories" className="oc-section scroll-mt-24">
-      <div className="oc-section-inner oc-section-inner--wide">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader
           eyebrow="Proof"
           title="What members are already saying"
@@ -54,7 +54,7 @@ export default function HormoziTestimonials() {
 
         <div className="oc-testimonial-row">
           {rest.map((t, i) => (
-            <HormoziReveal key={t.name} delay={120 + i * 60}>
+            <HormoziReveal key={t.name} delay={120 + i * 60} gridChild>
               <article className="oc-surface-card oc-testimonial-card">
                 <p className="oc-testimonial-headline">&ldquo;{t.headline}&rdquo;</p>
                 <blockquote>{t.quote}</blockquote>

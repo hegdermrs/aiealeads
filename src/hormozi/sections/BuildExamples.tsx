@@ -99,12 +99,20 @@ export default function BuildExamples() {
 
   return (
     <section id="build" className="oc-section scroll-mt-24">
-      <div className="oc-section-inner oc-section-inner--wide">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader
           eyebrow="What to build first"
           title="What could AI actually build inside your business?"
           lede="Most owners get stuck here. They know AI is powerful — they just do not know what to build first."
         />
+
+        <figure className="oc-section-media oc-section-media--cinema">
+          <img
+            src="/imgs/pit-crew.png"
+            alt="AI tools servicing a business like a pit crew — revenue, profit, costs, and time on the board."
+            loading="lazy"
+          />
+        </figure>
 
         <HormoziReveal delay={80}>
           <div className="oc-build-panel oc-surface-card">
@@ -148,7 +156,7 @@ export default function BuildExamples() {
           </div>
         </HormoziReveal>
 
-        <p className="oc-section-note">
+        <p className="oc-section-note oc-section-note--center">
           The point is not to build AI because it is exciting. It is to build systems
           that make the business more profitable, faster, and less dependent on you.
         </p>
@@ -159,6 +167,8 @@ export default function BuildExamples() {
           title="Get on the list before the next cohort opens"
           body="We open a small number of seats at a time. This list hears first."
           microcopy="No pitch. Just a heads-up when we open."
+          image="/imgs/business-core.png"
+          imageAlt="AI tools operating on the core of a business."
         />
       </div>
     </section>

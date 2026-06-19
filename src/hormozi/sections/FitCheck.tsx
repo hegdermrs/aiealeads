@@ -20,11 +20,11 @@ const NOT_FOR_YOU = [
 export default function HormoziFitCheck() {
   return (
     <section id="fit" className="oc-section scroll-mt-24">
-      <div className="oc-section-inner oc-section-inner--wide">
+      <div className="oc-section-inner oc-section-stack">
         <SectionHeader title="Is this for you?" align="center" />
 
         <div className="oc-fit-grid">
-          <HormoziReveal>
+          <HormoziReveal gridChild>
             <article className="oc-surface-card oc-fit-card oc-fit-yes">
               <header>
                 <span className="oc-fit-badge oc-fit-badge--yes">
@@ -40,7 +40,7 @@ export default function HormoziFitCheck() {
             </article>
           </HormoziReveal>
 
-          <HormoziReveal delay={80}>
+          <HormoziReveal delay={80} gridChild>
             <article className="oc-surface-card oc-fit-card oc-fit-no">
               <header>
                 <span className="oc-fit-badge oc-fit-badge--no">
