@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Globe, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
@@ -43,7 +44,14 @@ export default function Footer() {
       </div>
       <p className="mx-auto mt-8 max-w-6xl text-center text-xs text-white/30 sm:text-left">
         &copy; {new Date().getFullYear()} AI Execution Accelerator. No price, no
-        pitch — just a heads-up when the doors open.
+        pitch — just a heads-up when the doors open.{" "}
+        <Link to="/hormozi" className="underline decoration-white/20 hover:text-white/50">
+          Hormozi variation
+        </Link>
+        {" · "}
+        <Link to="/maxwell" className="underline decoration-white/20 hover:text-white/50">
+          Maxwell variation
+        </Link>
       </p>
     </footer>
   );
