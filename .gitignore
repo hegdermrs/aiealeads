@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# Large media kept out of source control
+/public/video.mp4
+/video.mp4
