@@ -18,22 +18,34 @@ import { useEffect, useRef } from "react";
 
 const FADE_MS = 600; // cross-fade / initial fade-in duration
 const CROSSFADE_LEAD = 0.7; // seconds before the end to begin the cross-fade
+const VIDEO_SRC = "/video.mp4";
 
 const VIDEO_CLASS =
   "pointer-events-none absolute inset-0 h-full w-full object-cover";
 
-export default function BackgroundVideo() {
+type BackgroundVideoProps = {
+  onReady?: () => void;
+};
+
+export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
   const aRef = useRef<HTMLVideoElement>(null);
   const bRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
   const activeRef = useRef<HTMLVideoElement | null>(null);
   const transitioningRef = useRef(false);
+  const readyNotifiedRef = useRef(false);
 
   useEffect(() => {
     const a = aRef.current;
     const b = bRef.current;
     if (!a || !b) return;
     activeRef.current = a;
+
+    const notifyReady = () => {
+      if (readyNotifiedRef.current) return;
+      readyNotifiedRef.current = true;
+      onReady?.();
+    };
 
     const cancelAnim = () => {
       if (rafRef.current !== null) {
@@ -45,6 +57,13 @@ export default function BackgroundVideo() {
     const play = (v: HTMLVideoElement) => {
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+
+    const preloadIdleCopy = () => {
+      if (b.preload === "none") {
+        b.preload = "auto";
+        b.load();
+      }
     };
 
     // Fade `outgoing` to 0 and `incoming` to 1 at the same time — the sum
@@ -114,6 +133,8 @@ export default function BackgroundVideo() {
     // single clean start rather than racing a lone `loadeddata`.
     let started = false;
     const handleReady = () => {
+      notifyReady();
+
       if (started) {
         play(a); // tab returned to foreground — make sure it's running
         return;
@@ -122,6 +143,7 @@ export default function BackgroundVideo() {
       a.currentTime = 0;
       play(a);
       fadeIn(a);
+      preloadIdleCopy();
     };
 
     a.addEventListener("timeupdate", handleTimeUpdate);
@@ -141,7 +163,7 @@ export default function BackgroundVideo() {
       a.removeEventListener("canplay", handleReady);
       a.removeEventListener("playing", handleReady);
     };
-  }, []);
+  }, [onReady]);
 
   return (
     <>
@@ -149,7 +171,7 @@ export default function BackgroundVideo() {
         ref={aRef}
         className={VIDEO_CLASS}
         style={{ opacity: 0 }}
-        src="/video.mp4"
+        src={VIDEO_SRC}
         muted
         autoPlay
         playsInline
@@ -159,11 +181,12 @@ export default function BackgroundVideo() {
         ref={bRef}
         className={VIDEO_CLASS}
         style={{ opacity: 0 }}
-        src="/video.mp4"
+        src={VIDEO_SRC}
         muted
         playsInline
-        preload="auto"
+        preload="none"
       />
     </>
   );
 }
+

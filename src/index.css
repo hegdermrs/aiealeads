@@ -158,3 +158,42 @@ body {
     stroke-dashoffset: 0 !important;
   }
 }
+
+@keyframes page-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Maxwell hero — cinematic text depth over video */
+.hero-eyebrow-shadow {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.65),
+    0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.hero-title-shadow {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.75),
+    0 8px 24px rgba(0, 0, 0, 0.55),
+    0 24px 48px rgba(0, 0, 0, 0.35);
+}
+
+.hero-title-accent-shadow {
+  text-shadow:
+    0 0 18px rgba(110, 231, 183, 0.45),
+    0 0 42px rgba(52, 211, 153, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.7),
+    0 12px 28px rgba(6, 78, 59, 0.35);
+}
+
+.hero-lede-shadow {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.hero-micro-shadow {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}

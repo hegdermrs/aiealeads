@@ -5,14 +5,18 @@ import WaitlistForm from "./WaitlistForm";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
-export default function Hero() {
+type HeroProps = {
+  onVideoReady?: () => void;
+};
+
+export default function Hero({ onVideoReady }: HeroProps) {
   return (
     <div
       id="top"
       className="relative flex min-h-screen flex-col overflow-hidden bg-black"
     >
       {/* Background video */}
-      <BackgroundVideo />
+      <BackgroundVideo onReady={onVideoReady} />
 
       {/* Cinematic legibility overlay (sits above video, below content) */}
       <div
@@ -32,22 +36,22 @@ export default function Hero() {
       {/* Hero content */}
       <div className="relative z-10 flex flex-1 translate-y-[8%] flex-col items-center justify-center px-6 py-12 text-center">
         <div
-          className="reveal is-visible mb-5 flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/70 liquid-glass"
+          className="reveal is-visible hero-eyebrow-shadow mb-5 flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/70 liquid-glass"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.65)]" />
           AI Execution Accelerator · Next Cohort
         </div>
 
         <h1
           style={SERIF}
-          className="mb-6 max-w-4xl text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="hero-title-shadow mb-6 max-w-4xl text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           You already know{" "}
-          <span className="text-emerald-300/90">AI matters.</span>
+          <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
           <br className="hidden sm:block" /> The next cohort opens soon.
         </h1>
 
-        <p className="mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+        <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
           Get on the list now, and you&rsquo;ll be the first to know the moment
           we open the next AI Execution Accelerator.
         </p>
@@ -55,7 +59,7 @@ export default function Hero() {
         {/* Waitlist form #1 (hero) */}
         <div id="waitlist" className="w-full max-w-xl space-y-4 scroll-mt-24">
           <WaitlistForm variant="hero" idPrefix="hero" />
-          <p className="px-4 text-sm leading-relaxed text-white/65">
+          <p className="hero-micro-shadow px-4 text-sm leading-relaxed text-white/65">
             No selling. Just a heads-up when we open, plus a few genuinely
             useful AI ideas while you wait.
           </p>
