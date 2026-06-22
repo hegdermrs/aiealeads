@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import BackgroundVideo from "../../components/BackgroundVideo";
+import MuxBackgroundVideo from "../../components/MuxBackgroundVideo";
 import Countdown from "../../components/Countdown";
 import WaitlistForm from "../../components/WaitlistForm";
 
@@ -7,12 +8,17 @@ const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 type HeroProps = {
   onVideoReady?: () => void;
+  muxPlaybackId?: string;
 };
 
-export default function Hero({ onVideoReady }: HeroProps) {
+export default function Hero({ onVideoReady, muxPlaybackId }: HeroProps) {
   return (
     <div id="top" className="relative flex min-h-screen flex-col overflow-hidden bg-black">
-      <BackgroundVideo onReady={onVideoReady} />
+      {muxPlaybackId ? (
+        <MuxBackgroundVideo onReady={onVideoReady} playbackId={muxPlaybackId} />
+      ) : (
+        <BackgroundVideo onReady={onVideoReady} />
+      )}
 
       {/* Glow orbs */}
       <div className="v3-orb v3-orb-1" style={{ width: "500px", height: "500px", background: "rgba(52, 211, 153, 0.12)", top: "10%", left: "-10%" }} />

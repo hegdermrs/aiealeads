@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import BackgroundVideo from "./BackgroundVideo";
+import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import Countdown from "./Countdown";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
@@ -12,17 +13,21 @@ type HeroProps = {
   playbackRate?: number;
   headline?: React.ReactNode;
   subtext?: string;
+  muxPlaybackId?: string;
 };
 
-export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, subtext }: HeroProps) {
+export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, subtext, muxPlaybackId }: HeroProps) {
   return (
     <div
       id="top"
       className="relative flex min-h-screen flex-col overflow-hidden bg-black"
     >
       {/* Background video */}
-      <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} playbackRate={playbackRate} />
-
+      {muxPlaybackId ? (
+        <MuxBackgroundVideo onReady={onVideoReady} playbackId={muxPlaybackId} />
+      ) : (
+        <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} playbackRate={playbackRate} />
+      )}
       {/* Cinematic legibility overlay (sits above video, below content) */}
       <div
         className="pointer-events-none absolute inset-0 z-0"

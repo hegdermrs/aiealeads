@@ -25,7 +25,7 @@ export default function V1Page() {
         }`}
         aria-hidden={contentHidden}
       >
-        <Hero onVideoReady={markReady} />
+        <Hero onVideoReady={markReady} muxPlaybackId="oa2Pk8H00BNkRwoUXDdOExUaNd9MkD6ue1bVzaaKo9Pc" />
 
         <main>
           <Gap />

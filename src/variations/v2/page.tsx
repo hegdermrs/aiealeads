@@ -27,8 +27,7 @@ export default function V2Page() {
       >
         <Hero
           onVideoReady={markReady}
-          videoSrc="/video2.mp4"
-          playbackRate={1}
+          muxPlaybackId="xhpPTjwY5bxxKlTI01lPaveCDz018009OXSnRCoIOl5UEc"
           headline={
             <>
               Stop watching AI happen.{" "}
