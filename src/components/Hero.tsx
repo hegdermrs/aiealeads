@@ -1,7 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import BackgroundVideo from "./BackgroundVideo";
 import MuxBackgroundVideo from "./MuxBackgroundVideo";
-import Countdown from "./Countdown";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
 
@@ -65,14 +64,8 @@ export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, s
         </p>
 
         {/* Waitlist form #1 (hero) */}
-        <div id="waitlist" className="w-full max-w-xl space-y-4 scroll-mt-24">
+        <div id="waitlist" className="w-full max-w-xl scroll-mt-24">
           <WaitlistForm variant="hero" idPrefix="hero" />
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/70 liquid-glass">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.65)]" />
-              <Countdown target={Date.now() + 30 * 86400000} />
-            </div>
-          </div>
         </div>
       </div>
 
