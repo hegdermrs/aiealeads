@@ -7,6 +7,11 @@
 mux-player {
   --media-object-fit: cover;
   --media-object-position: center;
+  --controls: none;
+}
+
+mux-player::part(controls) {
+  display: none !important;
 }
 
 html {
