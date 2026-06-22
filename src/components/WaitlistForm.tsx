@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -16,6 +17,7 @@ export default function WaitlistForm({
   const [email, setEmail] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
   const checkRef = useRef<HTMLSpanElement>(null);
+  const buttonText = useContentValue("hero.formButton");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -93,7 +95,7 @@ export default function WaitlistForm({
             aria-label="Get early access"
             className="group flex shrink-0 items-center gap-2 rounded-full bg-white py-3 pl-5 pr-4 text-sm font-medium text-black transition-transform duration-300 hover:scale-[1.03] active:scale-95"
           >
-            <span className="hidden sm:inline">Get Early Access</span>
+            <span className="hidden sm:inline">{buttonText || "Get Early Access"}</span>
             <ArrowRight
               size={20}
               className="transition-transform duration-300 group-hover:translate-x-0.5"

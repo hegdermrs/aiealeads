@@ -7,6 +7,23 @@ import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
+/** Split text at fullstops, break into lines, wrap last word of each in emerald. */
+function renderStyledHeadline(text: string) {
+  const sentences = text.split(".").filter(Boolean).map((s) => s.trim());
+  return sentences.map((sentence, i) => {
+    const words = sentence.split(/\s+/);
+    const last = words.pop() || "";
+    const period = i < sentences.length - 1 || text.endsWith(".") ? "." : "";
+    return (
+      <span key={i}>
+        {words.join(" ")}{words.length > 0 ? " " : ""}
+        <span className="hero-title-accent-shadow text-emerald-300/90">{last}{period}</span>
+        {i < sentences.length - 1 && <><br className="hidden sm:block" />{" "}</>}
+      </span>
+    );
+  });
+}
+
 type HeroProps = {
   onVideoReady?: () => void;
   videoSrc?: string;
@@ -18,6 +35,7 @@ type HeroProps = {
 export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, subtext }: HeroProps) {
   const savedHeadline = useContentValue("hero.headline");
   const savedSubtext = useContentValue("hero.subtext");
+  const learnMore = useContentValue("hero.learnMore");
   return (
     <div
       id="top"
@@ -46,15 +64,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
           style={SERIF}
           className="hero-title-shadow mb-6 max-w-4xl text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl"
         >
-          {headline ?? (
-            savedHeadline && savedHeadline !== "You already know AI matters. Time to take action." ? savedHeadline : (
-            <>
-              You already know{" "}
-              <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
-              <br className="hidden sm:block" /> Time to{" "}
-              <span className="hero-title-accent-shadow text-emerald-300/90">take action.</span>
-            </>)
-          )}
+          {headline ?? renderStyledHeadline(savedHeadline || "You already know AI matters. Time to take action.")}
         </h1>
 
         <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
@@ -72,7 +82,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
           className="liquid-glass rounded-full px-14 py-5 text-lg text-white transition-colors hover:bg-white/5"
           style={SERIF}
         >
-          What is AI Execution Accelerator?
+          {learnMore || "What is AI Execution Accelerator?"}
         </a>
       </div>
 
