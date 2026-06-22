@@ -1,5 +1,6 @@
 import { TrendingUp, Scissors, Clock, LineChart, type LucideIcon } from "lucide-react";
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -53,6 +54,8 @@ const CATEGORIES: Category[] = [
 ];
 
 export default function Build() {
+  const heading = useContentValue("build.heading");
+  const body = useContentValue("build.body");
   return (
     <section id="build" className="scroll-mt-20 px-6 py-28 md:py-32">
       <div className="mx-auto max-w-6xl">
@@ -63,14 +66,12 @@ export default function Build() {
                 style={SERIF}
                 className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
               >
-                Where AI fits in a real business.
+                {heading || "Where AI fits in a real business."}
               </span>
             </Reveal>
           </div>
           <Reveal className="text-lg leading-relaxed text-white/70">
-            The goal isn&rsquo;t AI for its own sake. It&rsquo;s systems that
-            make your business faster, leaner, and less dependent on you. We
-            find your highest-leverage build &mdash; then make it real.
+            {body || "The goal isn't AI for its own sake. It's systems that make your business faster, leaner, and less dependent on you. We find your highest-leverage build — then make it real."}
           </Reveal>
         </div>
 

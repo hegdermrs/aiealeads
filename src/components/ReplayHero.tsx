@@ -1,6 +1,7 @@
 import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import WaitlistForm from "./WaitlistForm";
 import Reveal from "./Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -9,6 +10,9 @@ type ReplayHeroProps = {
 };
 
 export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
+  const eyebrow = useContentValue("replay.eyebrow");
+  const heading = useContentValue("replay.heading");
+  const body = useContentValue("replay.body");
   return (
     <section className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-black px-6 py-20">
       {muxPlaybackId && <MuxBackgroundVideo playbackId={muxPlaybackId} />}
@@ -25,22 +29,19 @@ export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <Reveal>
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-            Want in when we open?
+            {eyebrow || "Want in when we open?"}
           </span>
           <h1
             style={SERIF}
             className="hero-title-shadow mt-4 mb-6 text-4xl leading-[1.08] tracking-tight text-white md:text-5xl lg:text-6xl"
           >
-            Get on the list.
+            {heading || "Get on the list."}
           </h1>
         </Reveal>
 
         <Reveal delay={100}>
           <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-            We open a small number of seats at a time, and we notify this list
-            first. There&rsquo;s nothing to buy today &mdash; just tell us where
-            to reach you, and you&rsquo;ll be the first to know when the next
-            cohort opens.
+            {body || "We open a small number of seats at a time, and we notify this list first. There's nothing to buy today — just tell us where to reach you, and you'll be the first to know when the next cohort opens."}
           </p>
         </Reveal>
 

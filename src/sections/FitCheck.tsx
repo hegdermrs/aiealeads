@@ -1,5 +1,6 @@
 import { Check, X } from "lucide-react";
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -19,6 +20,7 @@ const NOT_FOR_YOU = [
 ];
 
 export default function FitCheck() {
+  const heading = useContentValue("fitCheck.heading");
   return (
     <section className="px-6 py-28 md:py-32">
       <div className="mx-auto max-w-5xl">
@@ -27,7 +29,7 @@ export default function FitCheck() {
             style={SERIF}
             className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
           >
-            Let&rsquo;s make sure this is actually for you.
+            {heading || "Let's make sure this is actually for you."}
           </span>
         </Reveal>
 

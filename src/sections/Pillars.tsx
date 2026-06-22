@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -47,6 +48,8 @@ const PILLARS: Pillar[] = [
 ];
 
 export default function Pillars() {
+  const heading = useContentValue("pillars.heading");
+  const body = useContentValue("pillars.body");
   return (
     <section id="what-you-get" className="relative scroll-mt-20 px-6 py-28 md:py-32">
       <img
@@ -62,13 +65,11 @@ export default function Pillars() {
               style={SERIF}
               className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
             >
-              The five things a serious owner actually needs.
+              {heading || "The five things a serious owner actually needs."}
             </span>
           </Reveal>
           <Reveal className="mt-5 text-lg leading-relaxed text-white/70">
-            When the doors open, you&rsquo;re not joining &ldquo;a
-            mastermind.&rdquo; You&rsquo;re getting the five things that
-            actually help you move fast with AI.
+            {body || "When the doors open, you're not joining a mastermind. You're getting the five things that actually help you move fast with AI."}
           </Reveal>
         </div>
 

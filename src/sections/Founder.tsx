@@ -1,10 +1,15 @@
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 const ETHOS = ["Honor", "Courage", "Commitment"];
 
 export default function Founder() {
+  const heading = useContentValue("founder.heading");
+  const p1 = useContentValue("founder.paragraph1");
+  const p2 = useContentValue("founder.paragraph2");
+  const quote = useContentValue("founder.quote");
   return (
     <section id="manifesto" className="scroll-mt-20 px-6 py-28 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
@@ -27,32 +32,19 @@ export default function Founder() {
               style={SERIF}
               className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
             >
-              I&rsquo;m Antonio Centeno.
+              {heading || "I'm Antonio Centeno."}
             </span>
           </Reveal>
 
           <Reveal className="mt-7 space-y-5 text-lg leading-relaxed text-white/70">
-            <p>
-              For 18 years I&rsquo;ve built businesses online: Real Men Real
-              Style, Mission Fragrances, communities, courses, products, and
-              content channels with millions of subscribers and hundreds of
-              millions of views.
-            </p>
-            <p>
-              Seven kids. Multiple businesses. Constant decisions. And now AI. I
-              didn&rsquo;t build this to sell another course &mdash; I built it
-              because I saw the gap: smart owners know AI matters, but most
-              don&rsquo;t have the time, clarity, or technical help to turn that
-              into working systems.
-            </p>
+            <p>{p1 || "For 18 years I've built businesses online: Real Men Real Style, Mission Fragrances, communities, courses, products, and content channels with millions of subscribers and hundreds of millions of views."}</p>
+            <p>{p2 || "Seven kids. Multiple businesses. Constant decisions. And now AI. I didn't build this to sell another course — I built it because I saw the gap: smart owners know AI matters, but most don't have the time, clarity, or technical help to turn that into working systems."}</p>
             <p
               style={SERIF}
               className="border-l-2 border-emerald-400/70 pl-5 text-2xl leading-snug text-white md:text-3xl"
             >
-              Ideas are cheap.{" "}
-              <span className="text-emerald-300/90">
-                Execution is what counts.
-              </span>
+              {quote || "Ideas are cheap."}{" "}
+              <span className="text-emerald-300/90">Execution is what counts.</span>
             </p>
           </Reveal>
 

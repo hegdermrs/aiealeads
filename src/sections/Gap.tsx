@@ -1,8 +1,12 @@
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 export default function Gap() {
+  const p1 = useContentValue("gap.paragraph1");
+  const p2 = useContentValue("gap.paragraph2");
+  const quote = useContentValue("gap.quote");
   return (
     <section
       id="the-gap"
@@ -24,18 +28,8 @@ export default function Gap() {
           </Reveal>
 
           <Reveal className="mt-7 space-y-5 text-lg leading-relaxed text-white/70">
-            <p>
-              You&rsquo;ve used ChatGPT. Watched the videos. Heard the podcasts.
-              Tested a few tools. And deep down, you know this technology is
-              going to change your business.
-            </p>
-            <p>
-              But here&rsquo;s the honest truth: you still haven&rsquo;t
-              installed AI into the way your business actually runs. Not because
-              you&rsquo;re lazy &mdash; because you&rsquo;re busy running a real
-              business with customers, payroll, a team, and a family. So AI
-              keeps getting pushed to &ldquo;later.&rdquo;
-            </p>
+            <p>{p1 || "You've used ChatGPT. Watched the videos. Heard the podcasts. Tested a few tools. And deep down, you know this technology is going to change your business."}</p>
+            <p>{p2 || "But here's the honest truth: you still haven't installed AI into the way your business actually runs. Not because you're lazy — because you're busy running a real business with customers, payroll, a team, and a family. So AI keeps getting pushed to later."}</p>
           </Reveal>
 
           <Reveal className="mt-8">
@@ -43,7 +37,7 @@ export default function Gap() {
               style={SERIF}
               className="border-l-2 border-emerald-400/70 pl-5 text-2xl leading-snug text-white md:text-3xl"
             >
-              That&rsquo;s the gap. Not knowledge.{" "}
+              {quote || "That's the gap. Not knowledge."}{" "}
               <span className="text-emerald-300/90">Execution.</span>
             </p>
           </Reveal>

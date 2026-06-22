@@ -1,8 +1,12 @@
 import Reveal from "../components/Reveal";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 export default function Audit() {
+  const eyebrow = useContentValue("audit.eyebrow");
+  const heading = useContentValue("audit.heading");
+  const body = useContentValue("audit.body");
   return (
     <section className="px-6 py-16">
       <Reveal className="mx-auto max-w-6xl">
@@ -20,19 +24,16 @@ export default function Audit() {
           <div className="absolute inset-0 flex items-center">
             <div className="max-w-xl px-8 md:px-14">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                Before anything gets built
+                {eyebrow || "Before anything gets built"}
               </span>
               <h2
                 style={SERIF}
                 className="mt-4 text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
               >
-                We scan your business for the most expensive problems.
+                {heading || "We scan your business for the most expensive problems."}
               </h2>
               <p className="mt-5 text-base leading-relaxed text-white/80 md:text-lg">
-                We map your processes and surface the bottlenecks and
-                highest-leverage AI opportunities &mdash; the ones tied to
-                revenue, cost, time, or better decisions. You stop chasing
-                random tools and start solving problems that matter.
+                {body || "We map your processes and surface the bottlenecks and highest-leverage AI opportunities \u2014 the ones tied to revenue, cost, time, or better decisions. You stop chasing random tools and start solving problems that matter."}
               </p>
             </div>
           </div>
