@@ -5,20 +5,43 @@ const EXIT_MS = 700;
 
 export function useVideoGate() {
   const [phase, setPhase] = useState<"loading" | "exiting" | "done">("loading");
+  const [videoReady, setVideoReady] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   const markReady = useCallback(() => {
-    setPhase((current) => (current === "loading" ? "exiting" : current));
+    setVideoReady(true);
   }, []);
 
+  // Track full page load (images, assets, etc.)
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      setPageLoaded(true);
+      return;
+    }
+    const onLoad = () => setPageLoaded(true);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
+
+  // Reveal only when both video and page are ready
+  useEffect(() => {
+    if (videoReady && pageLoaded) {
+      setPhase((current) => (current === "loading" ? "exiting" : current));
+    }
+  }, [videoReady, pageLoaded]);
+
+  // Timeout fallback — don't trap users forever
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPhase("done");
       return;
     }
 
-    const timeout = window.setTimeout(markReady, READY_TIMEOUT_MS);
+    const timeout = window.setTimeout(() => {
+      setPhase((current) => (current === "loading" ? "exiting" : current));
+    }, READY_TIMEOUT_MS);
     return () => window.clearTimeout(timeout);
-  }, [markReady]);
+  }, []);
 
   useEffect(() => {
     if (phase !== "exiting") return;
