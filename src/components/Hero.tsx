@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import BackgroundVideo from "./BackgroundVideo";
-import MuxBackgroundVideo from "./MuxBackgroundVideo";
+import MuxPlayer from "@mux/mux-player-react";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
 import { useContentValue } from "../content/ContentProvider";
@@ -42,7 +42,17 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
       className="relative flex min-h-screen flex-col overflow-hidden bg-black"
     >
       {muxPlaybackId ? (
-        <MuxBackgroundVideo onReady={onVideoReady} playbackId={muxPlaybackId} />
+        <MuxPlayer
+          playbackId={muxPlaybackId}
+          streamType="on-demand"
+          muted
+          autoPlay
+          playsInline
+          loop
+          preload="auto"
+          className="pointer-events-none absolute inset-0 h-full w-full [--controls:none] object-cover"
+          onLoadedData={onVideoReady}
+        />
       ) : (
         <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} />
       )}
@@ -51,11 +61,11 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 50% 8%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%)",
+            "radial-gradient(120% 90% at 50% 8%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.7) 100%)",
         }}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[38%] bg-gradient-to-t from-black via-black/75 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[38%] bg-gradient-to-t from-black via-black/85 to-transparent" />
 
       <Nav />
 

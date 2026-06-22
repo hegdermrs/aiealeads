@@ -16,7 +16,7 @@ export default function PageLoader({ visible, exiting }: PageLoaderProps) {
       role="status"
     >
       <div className="flex flex-col items-center gap-6 px-6 text-center">
-        <img src="/logo.png" alt="AIEA logo" className="h-12 w-12" />
+        <img src="/logo.png" alt="AIEA logo" className="h-16 w-16 animate-spin" />
         <div>
           <p
             className="text-lg tracking-tight text-white"
