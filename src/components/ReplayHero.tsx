@@ -24,32 +24,28 @@ export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
 
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <Reveal>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+            Want in when we open?
+          </span>
           <h1
             style={SERIF}
-            className="hero-title-shadow mb-6 text-4xl leading-[1.08] tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="hero-title-shadow mt-4 mb-6 text-4xl leading-[1.08] tracking-tight text-white md:text-5xl lg:text-6xl"
           >
-            You already know{" "}
-            <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
-            <br /> Time to{" "}
-            <span className="hero-title-accent-shadow text-emerald-300/90">take action.</span>
+            Get on the list.
           </h1>
         </Reveal>
 
         <Reveal delay={100}>
           <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-            Get on the list now, and you&rsquo;ll be the first to know the
-            moment we open the next AI Execution Accelerator.
+            We open a small number of seats at a time, and we notify this list
+            first. There&rsquo;s nothing to buy today &mdash; just tell us where
+            to reach you, and you&rsquo;ll be the first to know when the next
+            cohort opens.
           </p>
         </Reveal>
 
         <Reveal delay={200} className="w-full max-w-xl">
           <WaitlistForm variant="hero" idPrefix="replay" />
-        </Reveal>
-
-        <Reveal delay={300} className="mt-6">
-          <p className="text-xs text-white/40">
-            No selling. Just a heads-up when the doors open.
-          </p>
         </Reveal>
       </div>
     </section>
