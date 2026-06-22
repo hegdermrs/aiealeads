@@ -187,7 +187,7 @@ export default function BackgroundVideo({ onReady, videoSrc = DEFAULT_VIDEO_SRC,
         src={videoSrc}
         muted
         playsInline
-        preload="none"
+        preload="auto"
       />
     </>
   );
