@@ -9,25 +9,23 @@ const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 type HeroProps = {
   onVideoReady?: () => void;
   videoSrc?: string;
-  playbackRate?: number;
+  muxPlaybackId?: string;
   headline?: React.ReactNode;
   subtext?: string;
-  muxPlaybackId?: string;
 };
 
-export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, subtext, muxPlaybackId }: HeroProps) {
+export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, subtext }: HeroProps) {
   return (
     <div
       id="top"
       className="relative flex min-h-screen flex-col overflow-hidden bg-black"
     >
-      {/* Background video */}
       {muxPlaybackId ? (
         <MuxBackgroundVideo onReady={onVideoReady} playbackId={muxPlaybackId} />
       ) : (
-        <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} playbackRate={playbackRate} />
+        <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} />
       )}
-      {/* Cinematic legibility overlay (sits above video, below content) */}
+
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{
@@ -36,13 +34,10 @@ export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, s
         }}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
-      {/* Bottom fade — dissolves the foot of the video smoothly into black. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[38%] bg-gradient-to-t from-black via-black/75 to-transparent" />
 
-      {/* Navigation */}
       <Nav />
 
-      {/* Hero content */}
       <div className="relative z-10 flex flex-1 translate-y-[8%] flex-col items-center justify-center px-6 py-12 text-center">
         <h1
           style={SERIF}
@@ -63,13 +58,11 @@ export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, s
             "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator."}
         </p>
 
-        {/* Waitlist form #1 (hero) */}
         <div id="waitlist" className="w-full max-w-xl scroll-mt-24">
           <WaitlistForm variant="hero" idPrefix="hero" />
         </div>
       </div>
 
-      {/* Learn more — centered between form and social icons */}
       <div className="relative z-10 flex justify-center pb-10 pt-2">
         <a
           href="#build"
@@ -80,14 +73,9 @@ export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, s
         </a>
       </div>
 
-      {/* Scroll-down indicator */}
       <div className="relative z-10 flex justify-center pb-6">
-        <ChevronDown
-          size={22}
-          className="animate-bounce text-white/40"
-        />
+        <ChevronDown size={22} className="animate-bounce text-white/40" />
       </div>
-
     </div>
   );
 }

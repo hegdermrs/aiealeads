@@ -1,4 +1,5 @@
 import Hero from "../../components/Hero";
+import ReplayHero from "../../components/ReplayHero";
 import PageLoader from "../../components/PageLoader";
 import Testimonial from "../../components/Testimonial";
 import Divider from "../../components/Divider";
@@ -9,7 +10,6 @@ import Audit from "../../sections/Audit";
 import Build from "../../sections/Build";
 import Founder from "../../sections/Founder";
 import FitCheck from "../../sections/FitCheck";
-import CtaBlock from "../../sections/CtaBlock";
 import Footer from "../../sections/Footer";
 
 export default function V1Page() {
@@ -58,17 +58,6 @@ export default function V1Page() {
           <Build />
           <Divider />
 
-          <CtaBlock
-            id="join"
-            idPrefix="mid"
-            eyebrow="Want in when we open?"
-            heading="Get on the list."
-            body="We open a small number of seats at a time, and we notify this list first. There's nothing to buy today — just tell us where to reach you, and you'll be the first to know when the next cohort opens."
-            image="/imgs/business-core.png"
-            imageAlt="A surgical theatre of AI tools operating on a glowing business core."
-          />
-          <Divider />
-
           <Founder />
           <Divider />
 
@@ -95,13 +84,7 @@ export default function V1Page() {
           </div>
           <Divider />
 
-          <CtaBlock
-            idPrefix="final"
-            eyebrow="The doors are going to open"
-            heading="Make sure you're on the list."
-            body="You already know AI matters. You already know waiting is not a strategy. When we open the next AI Execution Accelerator, seats are limited and this list gets first access."
-            microcopy="For established business owners who want to stop learning about AI and start executing with it."
-          />
+          <ReplayHero muxPlaybackId="oa2Pk8H00BNkRwoUXDdOExUaNd9MkD6ue1bVzaaKo9Pc" />
         </main>
 
         <Footer />
