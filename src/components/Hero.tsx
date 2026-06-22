@@ -74,7 +74,7 @@ export default function Hero({ onVideoReady, videoSrc, playbackRate, headline, s
       {/* Learn more — centered between form and social icons */}
       <div className="relative z-10 flex justify-center pb-10 pt-2">
         <a
-          href="#the-gap"
+          href="#build"
           className="liquid-glass rounded-full px-14 py-5 text-lg text-white transition-colors hover:bg-white/5"
           style={SERIF}
         >

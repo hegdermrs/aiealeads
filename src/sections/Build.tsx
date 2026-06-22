@@ -54,7 +54,7 @@ const CATEGORIES: Category[] = [
 
 export default function Build() {
   return (
-    <section className="px-6 py-28 md:py-32">
+    <section id="build" className="scroll-mt-20 px-6 py-28 md:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-end gap-10 lg:grid-cols-2">
           <div>
