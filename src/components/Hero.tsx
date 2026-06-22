@@ -3,6 +3,7 @@ import BackgroundVideo from "./BackgroundVideo";
 import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -15,6 +16,8 @@ type HeroProps = {
 };
 
 export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, subtext }: HeroProps) {
+  const savedHeadline = useContentValue("hero.headline");
+  const savedSubtext = useContentValue("hero.subtext");
   return (
     <div
       id="top"
@@ -44,18 +47,18 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
           className="hero-title-shadow mb-6 max-w-4xl text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           {headline ?? (
+            savedHeadline ? savedHeadline : (
             <>
               You already know{" "}
               <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
               <br className="hidden sm:block" /> Time to{" "}
               <span className="hero-title-accent-shadow text-emerald-300/90">take action.</span>
-            </>
+            </>)
           )}
         </h1>
 
         <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-          {subtext ??
-            "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator."}
+          {subtext ?? (savedSubtext || "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator.")}
         </p>
 
         <div id="waitlist" className="w-full max-w-xl scroll-mt-24">
