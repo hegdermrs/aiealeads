@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal";
+import MuxPlayer from "@mux/mux-player-react";
 import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
@@ -11,13 +12,16 @@ export default function Audit() {
     <section className="px-6 py-16">
       <Reveal className="mx-auto max-w-6xl">
         <div className="liquid-glass relative overflow-hidden rounded-[2rem]">
-          <img
-            src="/imgs/audit-scanner.png"
-            alt="The Execution Accelerator AI Audit Scanner inspecting every business process for bottlenecks, delays and underused AI."
-            className="h-[26rem] w-full object-cover md:h-[34rem]"
-            loading="lazy"
+          <MuxPlayer
+            playbackId="a1HlcfvNAyZSghFHzsOsu1t2sAcAbNVGUJA9HZ1ONB4"
+            streamType="on-demand"
+            muted
+            autoPlay
+            playsInline
+            loop
+            preload="auto"
+            className="pointer-events-none h-[26rem] w-full object-cover md:h-[34rem] [--controls:none]"
           />
-          {/* darken for legibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 

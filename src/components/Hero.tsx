@@ -77,7 +77,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
           {headline ?? renderStyledHeadline(savedHeadline || "You already know AI matters. Time to take action.")}
         </h1>
 
-        <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+        <p className="hero-lede-shadow mb-8 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
           {subtext ?? (savedSubtext || "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator.")}
         </p>
 
