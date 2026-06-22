@@ -47,7 +47,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
           className="hero-title-shadow mb-6 max-w-4xl text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           {headline ?? (
-            savedHeadline ? savedHeadline : (
+            savedHeadline && savedHeadline !== "You already know AI matters. Time to take action." ? savedHeadline : (
             <>
               You already know{" "}
               <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
