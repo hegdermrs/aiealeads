@@ -3,6 +3,7 @@ import BackgroundVideo from "./BackgroundVideo";
 import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -45,10 +46,13 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
         >
           {headline ?? (
             <>
-              You already know{" "}
-              <span className="hero-title-accent-shadow text-emerald-300/90">AI matters.</span>
-              <br className="hidden sm:block" /> Time to{" "}
-              <span className="hero-title-accent-shadow text-emerald-300/90">take action.</span>
+              <span className="hero-title-accent-shadow text-emerald-300/90">
+                {useContentValue("hero.headline") || "You already know AI matters."}
+              </span>
+              <br className="hidden sm:block" />{" "}
+              <span className="hero-title-accent-shadow text-emerald-300/90">
+                {useContentValue("hero.subtext") || "Time to take action."}
+              </span>
             </>
           )}
         </h1>

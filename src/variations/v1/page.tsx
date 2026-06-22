@@ -4,6 +4,7 @@ import PageLoader from "../../components/PageLoader";
 import Testimonial from "../../components/Testimonial";
 import Divider from "../../components/Divider";
 import { useVideoGate } from "../../hooks/useVideoGate";
+import { ContentProvider } from "../../content/ContentProvider";
 import Gap from "../../sections/Gap";
 import Pillars from "../../sections/Pillars";
 import Audit from "../../sections/Audit";
@@ -16,7 +17,7 @@ export default function V1Page() {
   const { markReady, showLoader, loaderExiting, contentHidden } = useVideoGate();
 
   return (
-    <>
+    <ContentProvider>
       <PageLoader visible={showLoader} exiting={loaderExiting} />
 
       <div
@@ -29,7 +30,6 @@ export default function V1Page() {
 
         <main>
           <Gap />
-          <Divider />
 
           <Testimonial
             headline="I'm saving tens of thousands of dollars in development time."
@@ -38,13 +38,11 @@ export default function V1Page() {
             role="Founder of Prepmedians"
             image="/imgs/kalyan.jpg"
           />
-          <Divider />
 
           <Pillars />
           <Divider />
 
           <Audit />
-          <Divider />
 
           <Testimonial
             headline="The group helped me think bigger about where AI fits strategically."
@@ -53,13 +51,11 @@ export default function V1Page() {
             role="Founder of MelanieCooks"
             image="/imgs/melanie.jpg"
           />
-          <Divider />
 
           <Build />
           <Divider />
 
           <Founder />
-          <Divider />
 
           <Testimonial
             headline="It turned AI from something interesting into something operational."
@@ -68,7 +64,6 @@ export default function V1Page() {
             role="Owner / President, Level 6 Marketing"
             image="/imgs/ben.jpg"
           />
-          <Divider />
 
           <FitCheck />
           <Divider />
@@ -89,6 +84,6 @@ export default function V1Page() {
 
         <Footer />
       </div>
-    </>
+    </ContentProvider>
   );
 }
