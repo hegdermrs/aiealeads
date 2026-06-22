@@ -17,7 +17,7 @@ export default function Founder() {
         <Reveal className="order-last flex justify-center lg:order-first">
           <div className="liquid-glass max-w-sm overflow-hidden rounded-[2rem]">
             <img
-              src="/imgs/aoc.webp"
+              src="/imgs/antonio.png"
               alt="Antonio Centeno, founder of the AI Execution Accelerator, in a blue suit and green tie."
               className="aspect-[4/5] w-full object-cover object-top"
               loading="lazy"
