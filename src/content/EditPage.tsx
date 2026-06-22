@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import defaultContent, { type PageContent } from "../content";
+import { saveContent, loadContent } from "./ContentProvider";
 
 const SECTIONS: { key: keyof PageContent; label: string; fields: { key: string; label: string; type?: "textarea" }[] }[] = [
   {
@@ -81,12 +82,8 @@ export default function EditPage() {
 
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch("/.netlify/functions/load-content");
-        if (!res.ok) return;
-        const data = await res.json();
-        if (data && Object.keys(data).length) setContent(mergeContent(defaultContent, data));
-      } catch {}
+      const data = await loadContent();
+      if (data) setContent(data);
       setLoading(false);
     })();
   }, []);
@@ -102,14 +99,8 @@ export default function EditPage() {
 
   const save = async () => {
     setSaving(true);
-    try {
-      const res = await fetch("/.netlify/functions/save-content", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(content),
-      });
-      if (res.ok) setSaved(true);
-    } catch {}
+    const ok = await saveContent(content);
+    if (ok) setSaved(true);
     setSaving(false);
   };
 
@@ -184,17 +175,4 @@ export default function EditPage() {
       </div>
     </div>
   );
-}
-
-function mergeContent(base: any, overrides: any): any {
-  const result = { ...base };
-  for (const key of Object.keys(overrides)) {
-    const val = overrides[key];
-    if (val && typeof val === "object" && !Array.isArray(val) && typeof result[key] === "object" && !Array.isArray(result[key])) {
-      result[key] = mergeContent(result[key], val);
-    } else {
-      result[key] = val;
-    }
-  }
-  return result;
 }
