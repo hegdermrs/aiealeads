@@ -135,6 +135,7 @@ export default function MuxBackgroundVideo({ onReady, playbackId }: MuxBackgroun
     playsInline: true,
     loop: false,
     preload: "auto" as const,
+    controls: false,
     style: { opacity: 0, position: "absolute" as const, inset: 0, width: "100%", height: "100%", objectFit: "cover" as const },
     className: "pointer-events-none",
   };
