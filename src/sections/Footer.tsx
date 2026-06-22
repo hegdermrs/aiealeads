@@ -1,22 +1,18 @@
-import { Link } from "react-router-dom";
 import { Globe, Instagram, Twitter } from "lucide-react";
+
+const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
-        <div className="flex items-center gap-2">
-          <Globe size={20} className="text-white" />
-          <span className="font-semibold text-white">AIEA</span>
-          <span className="ml-2 text-sm text-white/45">
-            AI Execution Accelerator
-          </span>
+    <footer className="border-t border-white/10 px-6 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6">
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="AIEA logo" className="h-32 w-32" />
+          <div className="flex flex-col">
+            <span style={SERIF} className="text-8xl text-emerald-300/90">AIEA</span>
+            <span style={SERIF} className="text-2xl text-white">AI Execution Accelerator</span>
+          </div>
         </div>
-
-        <p className="max-w-md text-sm leading-relaxed text-white/45">
-          For established business owners who want to stop learning about AI and
-          start executing with it.
-        </p>
 
         <div className="flex items-center gap-3">
           <a
@@ -41,18 +37,12 @@ export default function Footer() {
             <Globe size={18} />
           </a>
         </div>
+
+        <p className="text-center text-xs text-white/30">
+          &copy; {new Date().getFullYear()} AI Execution Accelerator. All rights
+          reserved.
+        </p>
       </div>
-      <p className="mx-auto mt-8 max-w-6xl text-center text-xs text-white/30 sm:text-left">
-        &copy; {new Date().getFullYear()} AI Execution Accelerator. No price, no
-        pitch — just a heads-up when the doors open.{" "}
-        <Link to="/hormozi" className="underline decoration-white/20 hover:text-white/50">
-          Hormozi variation
-        </Link>
-        {" · "}
-        <Link to="/maxwell" className="underline decoration-white/20 hover:text-white/50">
-          Maxwell variation
-        </Link>
-      </p>
     </footer>
   );
 }

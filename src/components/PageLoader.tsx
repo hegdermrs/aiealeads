@@ -16,18 +16,13 @@ export default function PageLoader({ visible, exiting }: PageLoaderProps) {
       role="status"
     >
       <div className="flex flex-col items-center gap-6 px-6 text-center">
-        <div
-          className="h-10 w-10 rounded-full border-2 border-white/10 border-t-emerald-400/90"
-          style={{ animation: "page-loader-spin 0.85s linear infinite" }}
-          aria-hidden="true"
-        />
-
+        <img src="/logo.png" alt="AIEA logo" className="h-12 w-12" />
         <div>
           <p
             className="text-lg tracking-tight text-white"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            AI Execution Accelerator
+            AIEA
           </p>
           <p className="mt-2 text-sm text-white/50">Preparing your experience&hellip;</p>
         </div>

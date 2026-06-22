@@ -48,8 +48,14 @@ const PILLARS: Pillar[] = [
 
 export default function Pillars() {
   return (
-    <section id="what-you-get" className="scroll-mt-20 px-6 py-28 md:py-32">
-      <div className="mx-auto max-w-6xl">
+    <section id="what-you-get" className="relative scroll-mt-20 px-6 py-28 md:py-32">
+      <img
+        src="/logo.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[80vw] max-h-[40rem] w-auto -translate-x-1/2 -translate-y-1/2 opacity-10"
+      />
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal as="h2">
             <span

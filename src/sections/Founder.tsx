@@ -9,10 +9,10 @@ export default function Founder() {
     <section id="manifesto" className="scroll-mt-20 px-6 py-28 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
         {/* Visual */}
-        <Reveal className="order-last lg:order-first">
-          <div className="liquid-glass overflow-hidden rounded-[2rem]">
+        <Reveal className="order-last flex justify-center lg:order-first">
+          <div className="liquid-glass max-w-sm overflow-hidden rounded-[2rem]">
             <img
-              src="/imgs/antonio.jpg"
+              src="/imgs/aoc.webp"
               alt="Antonio Centeno, founder of the AI Execution Accelerator, in a blue suit and green tie."
               className="aspect-[4/5] w-full object-cover object-top"
               loading="lazy"
@@ -56,14 +56,14 @@ export default function Founder() {
             </p>
           </Reveal>
 
-          <Reveal className="mt-8 flex flex-wrap items-center gap-3">
-            <span className="text-sm text-white/50">
+          <Reveal className="mt-8 flex flex-nowrap items-center gap-3">
+            <span className="shrink-0 text-sm text-white/50">
               My Marine officer background sets the standard:
             </span>
             {ETHOS.map((word) => (
               <span
                 key={word}
-                className="liquid-glass rounded-full px-4 py-1.5 text-sm font-medium text-white"
+                className="liquid-glass shrink-0 whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium text-white"
               >
                 {word}
               </span>

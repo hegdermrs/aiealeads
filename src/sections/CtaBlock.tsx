@@ -18,7 +18,7 @@ export default function CtaBlock({
   eyebrow: string;
   heading: string;
   body: string;
-  microcopy: string;
+  microcopy?: string;
   image?: string;
   imageAlt?: string;
 }) {

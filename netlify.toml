@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback — required for /hormozi, /maxwell, and client-side routes
+# SPA fallback — required for /v1, /v2, /v3 client-side routes
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -63,15 +63,14 @@ export default function Build() {
                 style={SERIF}
                 className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
               >
-                Every business is different. The categories are consistent.
+                Where AI fits in a real business.
               </span>
             </Reveal>
           </div>
           <Reveal className="text-lg leading-relaxed text-white/70">
-            The point is never to build AI because it&rsquo;s exciting. It&rsquo;s
-            to build systems that make the business faster, leaner, and less
-            dependent on you. Inside the program we help you find the right first
-            project &mdash; then build it.
+            The goal isn&rsquo;t AI for its own sake. It&rsquo;s systems that
+            make your business faster, leaner, and less dependent on you. We
+            find your highest-leverage build &mdash; then make it real.
           </Reveal>
         </div>
 

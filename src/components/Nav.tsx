@@ -1,4 +1,6 @@
-import { Globe } from "lucide-react";
+import { Globe, Instagram, Twitter } from "lucide-react";
+
+const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 const LINKS = [
   { label: "The Gap", href: "#the-gap" },
@@ -13,8 +15,8 @@ export default function Nav() {
         {/* Left: logo + links */}
         <div className="flex items-center gap-8">
           <a href="#top" className="flex items-center gap-2">
-            <Globe size={24} className="text-white" />
-            <span className="text-lg font-semibold text-white">AIEA</span>
+            <img src="/logo.png" alt="AIEA logo" className="h-16 w-16" />
+            <span style={SERIF} className="text-4xl text-white">AIEA</span>
           </a>
           <div className="hidden items-center gap-8 md:flex">
             {LINKS.map((link) => (
@@ -29,14 +31,31 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Right: secondary + primary CTA */}
-        <div className="flex items-center gap-4">
-          <a
-            href="#manifesto"
-            className="hidden text-sm font-medium text-white transition-colors hover:text-white/70 sm:inline"
-          >
-            Manifesto
-          </a>
+        {/* Right: social icons + CTA */}
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-2 sm:flex">
+            <a
+              href="#"
+              aria-label="AIEA on Instagram"
+              className="liquid-glass rounded-full p-2.5 text-white/70 transition-all hover:text-white"
+            >
+              <Instagram size={16} />
+            </a>
+            <a
+              href="#"
+              aria-label="AIEA on Twitter"
+              className="liquid-glass rounded-full p-2.5 text-white/70 transition-all hover:text-white"
+            >
+              <Twitter size={16} />
+            </a>
+            <a
+              href="#"
+              aria-label="AIEA website"
+              className="liquid-glass rounded-full p-2.5 text-white/70 transition-all hover:text-white"
+            >
+              <Globe size={16} />
+            </a>
+          </div>
           <a
             href="#waitlist"
             className="liquid-glass rounded-full px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-white/5"

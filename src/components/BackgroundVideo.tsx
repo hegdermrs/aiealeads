@@ -18,16 +18,18 @@ import { useEffect, useRef } from "react";
 
 const FADE_MS = 600; // cross-fade / initial fade-in duration
 const CROSSFADE_LEAD = 0.7; // seconds before the end to begin the cross-fade
-const VIDEO_SRC = "/video.mp4";
+const DEFAULT_VIDEO_SRC = "/video.mp4";
 
 const VIDEO_CLASS =
   "pointer-events-none absolute inset-0 h-full w-full object-cover";
 
 type BackgroundVideoProps = {
   onReady?: () => void;
+  videoSrc?: string;
+  playbackRate?: number;
 };
 
-export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
+export default function BackgroundVideo({ onReady, videoSrc = DEFAULT_VIDEO_SRC, playbackRate = 1 }: BackgroundVideoProps) {
   const aRef = useRef<HTMLVideoElement>(null);
   const bRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -55,6 +57,7 @@ export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
     };
 
     const play = (v: HTMLVideoElement) => {
+      v.playbackRate = playbackRate;
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     };
@@ -163,7 +166,7 @@ export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
       a.removeEventListener("canplay", handleReady);
       a.removeEventListener("playing", handleReady);
     };
-  }, [onReady]);
+  }, [onReady, playbackRate]);
 
   return (
     <>
@@ -171,7 +174,7 @@ export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
         ref={aRef}
         className={VIDEO_CLASS}
         style={{ opacity: 0 }}
-        src={VIDEO_SRC}
+        src={videoSrc}
         muted
         autoPlay
         playsInline
@@ -181,7 +184,7 @@ export default function BackgroundVideo({ onReady }: BackgroundVideoProps) {
         ref={bRef}
         className={VIDEO_CLASS}
         style={{ opacity: 0 }}
-        src={VIDEO_SRC}
+        src={videoSrc}
         muted
         playsInline
         preload="none"
