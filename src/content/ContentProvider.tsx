@@ -10,7 +10,10 @@ const ContentContext = createContext<PageContent | null>(null);
 
 async function loadFromServer(): Promise<PageContent | null> {
   try {
-    const res = await fetch("/.netlify/functions/load-content");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
+    const res = await fetch("/.netlify/functions/load-content", { signal: controller.signal });
+    clearTimeout(timeout);
     if (!res.ok) return null;
     const data = await res.json();
     if (data && Object.keys(data).length) return mergeContent(defaultContent, data);
@@ -63,17 +66,19 @@ export function useContentValue(path: string): string {
 }
 
 export async function saveContent(content: PageContent): Promise<boolean> {
-  // Try server first
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
     const res = await fetch("/.netlify/functions/save-content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(content),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
     if (res.ok) return true;
   } catch {}
 
-  // Fall back to localStorage
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
     return true;
