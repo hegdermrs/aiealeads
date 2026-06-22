@@ -47,7 +47,7 @@ export default function Gap() {
         <Reveal>
           <div className="liquid-glass overflow-hidden rounded-3xl">
             <img
-              src="/imgs/before-after.png"
+              src="/imgs/hell.png"
               alt="A business owner sitting with declining quarterly results in a dim office."
               className="aspect-[3/4] w-full object-cover object-left"
               loading="lazy"
