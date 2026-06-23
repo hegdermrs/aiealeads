@@ -6,6 +6,7 @@ import Divider from "../../components/Divider";
 import { useVideoGate } from "../../hooks/useVideoGate";
 import { ContentProvider } from "../../content/ContentProvider";
 import Gap from "../../sections/Gap";
+import Iceberg from "../../sections/Iceberg";
 import Pillars from "../../sections/Pillars";
 import Audit from "../../sections/Audit";
 import Build from "../../sections/Build";
@@ -31,6 +32,9 @@ export default function V1Page() {
         <main>
           <Gap />
 
+          <Iceberg />
+          <Divider />
+
           <Pillars />
 
           <Audit />
@@ -39,6 +43,7 @@ export default function V1Page() {
           <Divider />
 
           <FitCheck />
+          <Divider />
 
           <TestimonialsMarquee
             items={[
@@ -72,8 +77,6 @@ export default function V1Page() {
               },
             ]}
           />
-
-          <Divider />
 
           <ReplayHero muxPlaybackId="oa2Pk8H00BNkRwoUXDdOExUaNd9MkD6ue1bVzaaKo9Pc" />
 

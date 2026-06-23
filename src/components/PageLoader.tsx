@@ -1,9 +1,12 @@
+import { useContentValue } from "../content/ContentProvider";
+
 type PageLoaderProps = {
   visible: boolean;
   exiting: boolean;
 };
 
 export default function PageLoader({ visible, exiting }: PageLoaderProps) {
+  const loaderText = useContentValue("hero.loaderText");
   if (!visible && !exiting) return null;
 
   return (
@@ -24,7 +27,7 @@ export default function PageLoader({ visible, exiting }: PageLoaderProps) {
           >
             AIEA
           </p>
-          <p className="mt-2 text-sm text-white/50">Preparing your experience&hellip;</p>
+          <p className="mt-2 text-sm text-white/50">{loaderText || "Preparing your experience\u2026"}</p>
         </div>
       </div>
     </div>

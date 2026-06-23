@@ -15,7 +15,7 @@ export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
   const heading = useContentValue("replay.heading");
   const body = useContentValue("replay.body");
   return (
-    <section className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-black px-6 py-20">
+    <section id="waitlist" className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-black px-6 py-20">
       {muxPlaybackId && <MuxBackgroundVideo playbackId={muxPlaybackId} />}
 
       <div className="pointer-events-none absolute inset-0 z-0"
@@ -25,7 +25,7 @@ export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
         }}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[24%] bg-gradient-to-t from-black/80 via-black/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[40%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <Reveal>

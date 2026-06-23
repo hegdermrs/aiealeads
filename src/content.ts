@@ -1,5 +1,6 @@
 const content = {
   hero: {
+    loaderText: "Preparing your experience...",
     headline: "You already know AI matters. Time to take action.",
     subtext: "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator.",
     formButton: "Get Early Access",
@@ -20,6 +21,11 @@ const content = {
   gapBehind: {
     heading: "You're not alone in feeling behind.",
     caption: "Every founder I talk to feels the same way — like everyone else already figured out AI and you're the only one still trying to catch up. You're not. The people actually building with AI are rare. That's not bad news. It means the opportunity is still wide open.",
+  },
+  iceberg: {
+    heading: "Most of what matters is beneath the surface.",
+    body: "Everyone talks about prompts and tools. But the real work happens where nobody sees it — data pipelines wired into your actual CRM, decision trees that handle real customer scenarios, staff who stop doing a task because the system does it better. That's the part you can't see from the outside.",
+    body2: "We don't build demos. We build the infrastructure that replaces the spreadsheet someone updates at 11pm, the follow-up email that goes out late or never, the bottleneck where everything waits for one person's approval. That's where the money is.",
   },
   stories: {
     heading: "What founders are saying.",
@@ -55,12 +61,13 @@ const content = {
     heading: "I'm Antonio Centeno.",
     paragraph1: "For 18 years I've built businesses online: Real Men Real Style, Mission Fragrances, communities, courses, products, and content channels with millions of subscribers and hundreds of millions of views.",
     paragraph2: "Seven kids. Multiple businesses. Constant decisions. And now AI. I didn't build this to sell another course — I built it because I saw the gap: smart owners know AI matters, but most don't have the time, clarity, or technical help to turn that into working systems.",
+    paragraph3: "My Marine officer background sets the standard: Honor, Courage, Commitment.",
     quote: "Ideas are cheap. Execution is what counts.",
-    ethosLabel: "My Marine officer background sets the standard:",
-    ethos: ["Honor", "Courage", "Commitment"],
   },
   fitCheck: {
     heading: "Let's make sure this is actually for you.",
+    forYouLabel: "This is for you if\u2026",
+    notForYouLabel: "This is not for you if\u2026",
     forYou: [
       "You own an established business with real customers and revenue.",
       "You know AI matters but haven't implemented it deeply.",
@@ -81,6 +88,8 @@ const content = {
     body: "We open a small number of seats at a time, and we notify this list first. There's nothing to buy today — just tell us where to reach you, and you'll be the first to know when the next cohort opens.",
   },
   form: {
+    emailLabel: "Email address",
+    emailPlaceholder: "Enter your email",
     successMessage: "Thanks, we'll be in touch.",
   },
   footer: {

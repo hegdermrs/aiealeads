@@ -1,8 +1,4 @@
-/* Hallmark · component: testimonial-marquee · genre: atmospheric · theme: existing (dark)
- * states: default · hover (pause scroll + card lift with bouncy return)
- */
-
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Reveal from "./Reveal";
 import { useContentValue } from "../content/ContentProvider";
 import { RenderHeading } from "../utils/headings";
@@ -25,30 +21,9 @@ type TestimonialData = {
 
 export default function TestimonialsMarquee({ items }: { items: TestimonialData[] }) {
   const storiesHeading = useContentValue("stories.heading");
-  const doubled = [...items, ...items];
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const setShifts = (activeIdx: number | null) => {
-    if (!trackRef.current) return;
-    const cards = trackRef.current.querySelectorAll<HTMLDivElement>(".t-avatar");
-    const tf = activeIdx == null
-      ? "cubic-bezier(0.34, 3.85, 0.64, 1)"
-      : "cubic-bezier(0.22, 1, 0.36, 1)";
-
-    cards.forEach((el, i) => {
-      el.style.transitionTimingFunction = tf;
-      if (activeIdx == null) {
-        el.style.removeProperty("--shift");
-        el.style.removeProperty("--scale-active");
-        return;
-      }
-      el.style.setProperty("--shift", i === activeIdx ? "-6px" : "0px");
-      el.style.setProperty("--scale-active", i === activeIdx ? "1.02" : "1");
-    });
-  };
 
   return (
-    <section id="stories" className="scroll-mt-20 overflow-hidden px-6 py-10 md:py-14">
+    <section id="stories" className="scroll-mt-20 px-6 py-10 md:py-14">
       <Reveal className="mx-auto mb-14 max-w-3xl text-center">
         <h2
           style={SERIF}
@@ -58,18 +33,10 @@ export default function TestimonialsMarquee({ items }: { items: TestimonialData[
         </h2>
       </Reveal>
 
-      <div className="group relative">
-        {/* Fade edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-48 bg-gradient-to-r from-black to-transparent md:w-96" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-48 bg-gradient-to-l from-black to-transparent md:w-96" />
-
-        <div
-          ref={trackRef}
-          className="marquee-track flex gap-12"
-          onMouseLeave={() => setShifts(null)}
-        >
-          {doubled.map((t, i) => (
-            <Card key={`${t.name}-${i}`} index={i} onHover={setShifts} {...t} />
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {items.map((t) => (
+            <Card key={t.name} {...t} />
           ))}
         </div>
       </div>
@@ -77,46 +44,40 @@ export default function TestimonialsMarquee({ items }: { items: TestimonialData[
   );
 }
 
-function Card({
-  headline, quote, name, role, image,
-  index, onHover,
-}: TestimonialData & { index: number; onHover: (i: number | null) => void }) {
+function Card({ headline, quote, name, role, image }: TestimonialData) {
   const [imgError, setImgError] = useState(false);
   const showAvatar = image && !imgError;
 
   return (
-    <div
-      className="t-avatar liquid-glass flex w-[52rem] shrink-0 flex-col justify-between rounded-3xl p-14 md:w-[56rem]"
-      onMouseEnter={() => onHover(index)}
-    >
+    <div className="liquid-glass flex flex-col justify-between rounded-3xl p-7">
       <blockquote>
         <p
           style={SERIF}
-          className="hero-title-shadow text-3xl leading-snug text-white md:text-4xl"
+          className="hero-title-shadow text-xl leading-snug text-white md:text-2xl"
         >
           &ldquo;{headline}&rdquo;
         </p>
-        <p className="mt-6 text-lg leading-relaxed text-white/70">
+        <p className="mt-4 text-base leading-relaxed text-white/70">
           {quote}
         </p>
       </blockquote>
 
-      <figcaption className="mt-8 flex items-center gap-4 text-base">
+      <figcaption className="mt-6 flex items-center gap-3 text-sm">
         {showAvatar ? (
           <img
             src={image}
             alt={name}
-            className="h-14 w-14 shrink-0 rounded-full object-cover ring-1 ring-white/20"
+            className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-white/20"
             loading="lazy"
             onError={() => setImgError(true)}
           />
         ) : (
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-base font-semibold text-emerald-300 ring-1 ring-emerald-400/30">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-400/30">
             {getInitials(name)}
           </span>
         )}
-        <span className="font-medium text-white text-lg">{name}</span>
-        <span className="text-white/50 text-lg">{role}</span>
+        <span className="font-medium text-white">{name}</span>
+        <span className="text-white/50">{role}</span>
       </figcaption>
     </div>
   );

@@ -21,6 +21,7 @@ const SECTIONS: SectionDef[] = [
     key: "hero",
     label: "Hero Section",
     fields: [
+      { key: "loaderText", label: "Loader Text" },
       { key: "headline", label: "Headline" },
       { key: "subtext", label: "Subtext", type: "textarea" },
       { key: "formButton", label: "Form Button" },
@@ -45,6 +46,15 @@ const SECTIONS: SectionDef[] = [
       { key: "paragraph1", label: "Paragraph 1", type: "textarea" },
       { key: "paragraph2", label: "Paragraph 2", type: "textarea" },
       { key: "quote", label: "Quote" },
+    ],
+  },
+  {
+    key: "iceberg",
+    label: "Iceberg Section",
+    fields: [
+      { key: "heading", label: "Heading" },
+      { key: "body", label: "Body", type: "textarea" },
+      { key: "body2", label: "Body 2", type: "textarea" },
     ],
   },
   {
@@ -87,7 +97,9 @@ const SECTIONS: SectionDef[] = [
     label: "Fit Check Section",
     fields: [
       { key: "heading", label: "Heading" },
+      { key: "forYouLabel", label: "For You Sub-heading" },
       { key: "forYou", label: "For You List", type: "textarea" },
+      { key: "notForYouLabel", label: "Not For You Sub-heading" },
       { key: "notForYou", label: "Not For You List", type: "textarea" },
     ],
   },
@@ -106,9 +118,8 @@ const SECTIONS: SectionDef[] = [
       { key: "heading", label: "Heading" },
       { key: "paragraph1", label: "Paragraph 1", type: "textarea" },
       { key: "paragraph2", label: "Paragraph 2", type: "textarea" },
+      { key: "paragraph3", label: "Paragraph 3 (Ethos)", type: "textarea" },
       { key: "quote", label: "Quote" },
-      { key: "ethosLabel", label: "Ethos Label" },
-      { key: "ethos", label: "Ethos Words (one per line)", type: "textarea" },
     ],
   },
   {
@@ -124,6 +135,8 @@ const SECTIONS: SectionDef[] = [
     key: "form",
     label: "Forms",
     fields: [
+      { key: "emailLabel", label: "Email Label (sr-only)" },
+      { key: "emailPlaceholder", label: "Email Placeholder" },
       { key: "successMessage", label: "Success Message" },
     ],
   },
@@ -214,12 +227,12 @@ export default function EditPage() {
 
   return (
     <div className="min-h-screen bg-black px-6 py-10 text-white" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-10 flex items-center justify-between">
+      {/* Floating save bar */}
+      <div className="sticky top-0 z-50 -mx-6 bg-black/80 px-6 py-4 backdrop-blur-lg">
+        <div className="mx-auto max-w-4xl flex items-center justify-between">
           <div>
-            <a href="/" className="mb-2 inline-block text-sm text-emerald-300 hover:underline">&larr; Back to site</a>
-            <h1 className="text-3xl font-bold" style={{ fontFamily: "'Instrument Serif', serif" }}>Page Editor</h1>
-            <p className="mt-1 text-sm text-white/50">Edit text content for every section of the landing page.</p>
+            <a href="/" className="text-sm text-emerald-300 hover:underline">&larr; Back to site</a>
+            <h1 className="text-2xl font-bold" style={{ fontFamily: "'Instrument Serif', serif" }}>Page Editor</h1>
           </div>
           <button
             onClick={save}
@@ -229,6 +242,9 @@ export default function EditPage() {
             {saving ? "Saving..." : saved ? "Saved!" : "Save All"}
           </button>
         </div>
+      </div>
+
+      <div className="mx-auto max-w-4xl pt-6">
 
         {SECTIONS.map((section) => {
           const sectionContent = content[section.key] as any;

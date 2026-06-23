@@ -8,6 +8,8 @@ const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 export default function FitCheck() {
   const heading = useContentValue("fitCheck.heading");
+  const forYouLabel = useContentValue("fitCheck.forYouLabel");
+  const notForYouLabel = useContentValue("fitCheck.notForYouLabel");
   const c = useContent();
   const FOR_YOU = c.fitCheck?.forYou?.length ? c.fitCheck.forYou : defaultContent.fitCheck.forYou;
   const NOT_FOR_YOU = c.fitCheck?.notForYou?.length ? c.fitCheck.notForYou : defaultContent.fitCheck.notForYou;
@@ -30,7 +32,7 @@ export default function FitCheck() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-400 text-black">
                   <Check size={16} strokeWidth={3} />
                 </span>
-                This is for you if&hellip;
+                {forYouLabel || "This is for you if\u2026"}
               </h3>
               <ul className="space-y-4">
                 {FOR_YOU.map((item) => (
@@ -55,7 +57,7 @@ export default function FitCheck() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white/60">
                   <X size={16} strokeWidth={3} />
                 </span>
-                This is not for you if&hellip;
+                {notForYouLabel || "This is not for you if\u2026"}
               </h3>
               <ul className="space-y-4">
                 {NOT_FOR_YOU.map((item) => (

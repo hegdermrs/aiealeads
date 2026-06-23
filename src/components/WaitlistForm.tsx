@@ -18,6 +18,8 @@ export default function WaitlistForm({
   const [phase, setPhase] = useState<Phase>("idle");
   const checkRef = useRef<HTMLSpanElement>(null);
   const buttonText = useContentValue("hero.formButton");
+  const emailPlaceholder = useContentValue("form.emailPlaceholder");
+  const emailLabel = useContentValue("form.emailLabel");
   const successMessage = useContentValue("form.successMessage");
 
   const handleSubmit = async (e: FormEvent) => {
@@ -79,7 +81,7 @@ export default function WaitlistForm({
             autoComplete="off"
           />
           <label htmlFor={inputId} className="sr-only">
-            Email address
+            {emailLabel || "Email address"}
           </label>
           <input
             id={inputId}
@@ -88,7 +90,7 @@ export default function WaitlistForm({
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder={emailPlaceholder || "Enter your email"}
             className="w-full flex-1 bg-transparent text-base text-white outline-none placeholder:text-white/40"
           />
           <button
