@@ -85,7 +85,7 @@ export default function Gap() {
           <p>{behindCaption || "Every founder I talk to feels the same way — like everyone else already figured out AI and you're the only one still trying to catch up. You're not. The people actually building with AI are rare. That's not bad news. It means the opportunity is still wide open."}</p>
         </Reveal>
 
-        <div className="mx-auto mt-10 h-0.5 max-w-lg bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+        <div className="mx-auto mt-8 h-0.5 max-w-lg bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
       </div>
     </section>
   );

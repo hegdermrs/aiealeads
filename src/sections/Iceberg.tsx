@@ -9,7 +9,7 @@ export default function Iceberg() {
   const body = useContentValue("iceberg.body");
   const body2 = useContentValue("iceberg.body2");
   return (
-    <section className="scroll-mt-20 px-6 py-10 md:py-14">
+    <section className="scroll-mt-20 px-6 pt-4 pb-10 md:pt-6 md:pb-14">
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
         {/* Image — left */}
         <Reveal className="flex justify-center">
