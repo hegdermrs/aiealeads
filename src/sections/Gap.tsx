@@ -50,7 +50,6 @@ export default function Gap() {
               src="/imgs/problem.png"
               alt="A visual of the gap between knowing AI matters and actually putting it to work."
               className="aspect-[3.5/2.6] w-full object-cover"
-              loading="lazy"
             />
           </div>
           <div className="liquid-glass overflow-hidden rounded-3xl">
@@ -58,7 +57,6 @@ export default function Gap() {
               src="/imgs/iceberg.png"
               alt="Like an iceberg, the gap between knowing AI and executing it is mostly beneath the surface."
               className="h-full w-full object-cover"
-              loading="lazy"
             />
           </div>
         </div>
@@ -87,7 +85,6 @@ export default function Gap() {
             src="/imgs/behind.png"
             alt="A person feeling left behind while everyone else moves ahead with AI."
             className="aspect-[5/2] w-full object-cover"
-            loading="lazy"
           />
         </div>
       </Reveal>
