@@ -2,6 +2,7 @@ import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import WaitlistForm from "./WaitlistForm";
 import Reveal from "./Reveal";
 import { useContentValue } from "../content/ContentProvider";
+import { RenderHeading } from "../utils/headings";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
@@ -35,7 +36,7 @@ export default function ReplayHero({ muxPlaybackId }: ReplayHeroProps) {
             style={SERIF}
             className="hero-title-shadow mt-4 mb-6 text-4xl leading-[1.08] tracking-tight text-white md:text-5xl lg:text-6xl"
           >
-            {heading || "Get on the list."}
+            <RenderHeading text={heading || "Get on the list."} />
           </h1>
         </Reveal>
 

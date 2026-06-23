@@ -1,14 +1,20 @@
 import { Globe, Instagram, Twitter } from "lucide-react";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
-const LINKS = [
-  { label: "The Gap", href: "#the-gap" },
-  { label: "What You Get", href: "#what-you-get" },
-  { label: "Stories", href: "#stories" },
-];
-
 export default function Nav() {
+  const gapLabel = useContentValue("nav.gapLabel");
+  const whatYouGetLabel = useContentValue("nav.whatYouGetLabel");
+  const storiesLabel = useContentValue("nav.storiesLabel");
+  const ctaLabel = useContentValue("nav.ctaLabel");
+
+  const LINKS = [
+    { label: gapLabel || "The Gap", href: "#the-gap" },
+    { label: whatYouGetLabel || "What You Get", href: "#what-you-get" },
+    { label: storiesLabel || "Stories", href: "#stories" },
+  ];
+
   return (
     <nav className="relative z-20 px-6 py-6">
       <div className="mx-auto flex max-w-5xl items-center justify-between rounded-full px-6 py-3">
@@ -60,7 +66,7 @@ export default function Nav() {
             href="#waitlist"
             className="liquid-glass rounded-full px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-white/5"
           >
-            Get Early Access
+            {ctaLabel || "Get Early Access"}
           </a>
         </div>
       </div>

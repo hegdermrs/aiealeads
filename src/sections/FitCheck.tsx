@@ -1,35 +1,25 @@
 import { Check, X } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { useContentValue } from "../content/ContentProvider";
+import { useContentValue, useContent } from "../content/ContentProvider";
+import { RenderHeading } from "../utils/headings";
+import defaultContent from "../content";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
-const FOR_YOU = [
-  "You own an established business with real customers and revenue.",
-  "You know AI matters but haven't implemented it deeply.",
-  "You're tired of dabbling and want help implementing, not just learning.",
-  "You value being in a room with serious operators.",
-  "You want AI tied to revenue, cost savings, time, or better decisions.",
-];
-
-const NOT_FOR_YOU = [
-  "You're still figuring out what business to start.",
-  "You want a cheap prompt pack or passive learning.",
-  "You want to collect ideas but avoid execution.",
-  "You want someone to magically fix your business while you stay uninvolved.",
-];
-
 export default function FitCheck() {
   const heading = useContentValue("fitCheck.heading");
+  const c = useContent();
+  const FOR_YOU = c.fitCheck?.forYou?.length ? c.fitCheck.forYou : defaultContent.fitCheck.forYou;
+  const NOT_FOR_YOU = c.fitCheck?.notForYou?.length ? c.fitCheck.notForYou : defaultContent.fitCheck.notForYou;
   return (
-    <section className="px-6 py-28 md:py-32">
+    <section className="px-6 py-10 md:py-14">
       <div className="mx-auto max-w-5xl">
         <Reveal as="h2" className="mx-auto mb-14 max-w-2xl text-center">
           <span
             style={SERIF}
             className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
           >
-            {heading || "Let's make sure this is actually for you."}
+            <RenderHeading text={heading || "Let's make sure this is actually for you."} />
           </span>
         </Reveal>
 

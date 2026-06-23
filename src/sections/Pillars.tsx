@@ -7,9 +7,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { useContentValue } from "../content/ContentProvider";
+import { useContentValue, useContent } from "../content/ContentProvider";
+import { RenderHeading } from "../utils/headings";
+import defaultContent from "../content";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
+
+const ICONS: LucideIcon[] = [Compass, Users, BookOpen, ScanSearch, Wrench];
+const HIGHLIGHTS = [false, false, false, false, true];
 
 type Pillar = {
   icon: LucideIcon;
@@ -18,40 +23,19 @@ type Pillar = {
   highlight?: boolean;
 };
 
-const PILLARS: Pillar[] = [
-  {
-    icon: Compass,
-    title: "You stop feeling left behind",
-    body: "Get clear on what AI can do for your business — what matters, what doesn't, and where to focus first. No more guessing. No more pretending another saved video is progress.",
-  },
-  {
-    icon: Users,
-    title: "A room of serious operators",
-    body: "You're surrounded by established owners who are building, testing, hiring, and automating. Not surface-level talk. A room where you don't have to explain yourself.",
-  },
-  {
-    icon: BookOpen,
-    title: "The course as a safety net",
-    body: "AI foundations and training so you understand the moving pieces without becoming a full-time researcher. The course supports the work. It is not the main event.",
-  },
-  {
-    icon: ScanSearch,
-    title: "An AI business audit",
-    body: "Before anything gets built, we find the bottlenecks and highest-leverage AI opportunities — tied to revenue, cost, time, or better decisions. Stop chasing random tools.",
-  },
-  {
-    icon: Wrench,
-    title: "An implementer who helps you build",
-    body: "This is the difference. You're not left alone with a list of homework. An implementation specialist helps move your project from idea to a working system. That's what makes it an accelerator.",
-    highlight: true,
-  },
-];
-
 export default function Pillars() {
   const heading = useContentValue("pillars.heading");
   const body = useContentValue("pillars.body");
+  const c = useContent();
+  const pillarItems = c.pillars?.items?.length ? c.pillars.items : defaultContent.pillars.items;
+  const PILLARS: Pillar[] = pillarItems.map((item, i) => ({
+    icon: ICONS[i] ?? Compass,
+    title: item.title,
+    body: item.body,
+    highlight: HIGHLIGHTS[i] ?? false,
+  }));
   return (
-    <section id="what-you-get" className="relative scroll-mt-20 px-6 py-28 md:py-32">
+    <section id="what-you-get" className="relative scroll-mt-20 px-6 py-10 md:py-14">
       <img
         src="/logo.png"
         alt=""
@@ -65,7 +49,7 @@ export default function Pillars() {
               style={SERIF}
               className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
             >
-              {heading || "The five things a serious owner actually needs."}
+              <RenderHeading text={heading || "The five things a serious owner actually needs."} />
             </span>
           </Reveal>
           <Reveal className="mt-5 text-lg leading-relaxed text-white/70">

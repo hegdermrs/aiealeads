@@ -1,8 +1,12 @@
 import { TrendingUp, Scissors, Clock, LineChart, type LucideIcon } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { useContentValue } from "../content/ContentProvider";
+import { useContentValue, useContent } from "../content/ContentProvider";
+import { RenderHeading } from "../utils/headings";
+import defaultContent from "../content";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
+
+const CATEGORY_ICONS: LucideIcon[] = [TrendingUp, Scissors, Clock, LineChart];
 
 type Category = {
   icon: LucideIcon;
@@ -10,54 +14,18 @@ type Category = {
   items: string[];
 };
 
-const CATEGORIES: Category[] = [
-  {
-    icon: TrendingUp,
-    title: "Grow revenue",
-    items: [
-      "Speed-to-lead agents",
-      "Email follow-up sequences",
-      "Lead finders & qualifiers",
-      "Quizzes that qualify before they book",
-    ],
-  },
-  {
-    icon: Scissors,
-    title: "Cut costs",
-    items: [
-      "Customer support chatbots",
-      "Knowledge-base agents",
-      "Expense trackers that find waste",
-      "Churn-risk trackers",
-    ],
-  },
-  {
-    icon: Clock,
-    title: "Save time",
-    items: [
-      "An email manager that tames the inbox",
-      "Content pipeline dashboards",
-      "A blog updater that refreshes old posts",
-      "Calendar agents that protect deep work",
-    ],
-  },
-  {
-    icon: LineChart,
-    title: "Better decisions",
-    items: [
-      "Revenue dashboards that flag dips early",
-      "Staff-performance dashboards",
-      "A YouTube audit agent for hidden growth",
-      "Numbers you can actually trust",
-    ],
-  },
-];
-
 export default function Build() {
   const heading = useContentValue("build.heading");
   const body = useContentValue("build.body");
+  const c = useContent();
+  const rawCategories = c.build?.categories?.length ? c.build.categories : defaultContent.build.categories;
+  const CATEGORIES: Category[] = rawCategories.map((cat, i) => ({
+    icon: CATEGORY_ICONS[i] ?? TrendingUp,
+    title: cat.title,
+    items: cat.items,
+  }));
   return (
-    <section id="build" className="scroll-mt-20 px-6 py-28 md:py-32">
+    <section id="build" className="scroll-mt-20 px-6 py-10 md:py-14">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-end gap-10 lg:grid-cols-2">
           <div>
@@ -66,7 +34,7 @@ export default function Build() {
                 style={SERIF}
                 className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
               >
-                {heading || "Where AI fits in a real business."}
+                <RenderHeading text={heading || "Where AI fits in a real business."} />
               </span>
             </Reveal>
           </div>

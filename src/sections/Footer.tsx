@@ -1,8 +1,10 @@
 import { Globe, Instagram, Twitter } from "lucide-react";
+import { useContentValue } from "../content/ContentProvider";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
 export default function Footer() {
+  const tagline = useContentValue("footer.tagline");
   return (
     <footer className="border-t border-white/10 px-6 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6">
@@ -10,7 +12,7 @@ export default function Footer() {
           <img src="/logo.png" alt="AIEA logo" className="h-32 w-32" />
           <div className="flex flex-col">
             <span style={SERIF} className="text-8xl text-emerald-300/90">AIEA</span>
-            <span style={SERIF} className="text-2xl text-white">AI Execution Accelerator</span>
+            <span style={SERIF} className="text-2xl text-white">{tagline || "AI Execution Accelerator"}</span>
           </div>
         </div>
 

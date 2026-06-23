@@ -1,6 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import BackgroundVideo from "./BackgroundVideo";
-import MuxPlayer from "@mux/mux-player-react";
+import MuxBackgroundVideo from "./MuxBackgroundVideo";
 import Nav from "./Nav";
 import WaitlistForm from "./WaitlistForm";
 import { useContentValue } from "../content/ContentProvider";
@@ -26,13 +25,12 @@ function renderStyledHeadline(text: string) {
 
 type HeroProps = {
   onVideoReady?: () => void;
-  videoSrc?: string;
   muxPlaybackId?: string;
   headline?: React.ReactNode;
   subtext?: string;
 };
 
-export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, subtext }: HeroProps) {
+export default function Hero({ onVideoReady, muxPlaybackId, headline, subtext }: HeroProps) {
   const savedHeadline = useContentValue("hero.headline");
   const savedSubtext = useContentValue("hero.subtext");
   const learnMore = useContentValue("hero.learnMore");
@@ -41,21 +39,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
       id="top"
       className="relative flex min-h-screen flex-col overflow-hidden bg-black"
     >
-      {muxPlaybackId ? (
-        <MuxPlayer
-          playbackId={muxPlaybackId}
-          streamType="on-demand"
-          muted
-          autoPlay
-          playsInline
-          loop
-          preload="auto"
-          className="pointer-events-none absolute inset-0 h-full w-full [--controls:none] object-cover"
-          onLoadedData={onVideoReady}
-        />
-      ) : (
-        <BackgroundVideo onReady={onVideoReady} videoSrc={videoSrc} />
-      )}
+      <MuxBackgroundVideo playbackId={muxPlaybackId!} onReady={onVideoReady} />
 
       <div
         className="pointer-events-none absolute inset-0 z-0"
@@ -88,7 +72,7 @@ export default function Hero({ onVideoReady, videoSrc, muxPlaybackId, headline, 
 
       <div className="relative z-10 flex justify-center pb-10 pt-2">
         <a
-          href="#build"
+          href="#audit"
           className="liquid-glass rounded-full px-14 py-5 text-lg text-white transition-colors hover:bg-white/5"
           style={SERIF}
         >

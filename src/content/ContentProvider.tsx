@@ -1,9 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import defaultContent, { type PageContent } from "../content";
 
-export { defaultContent };
-export type { PageContent };
-
 const STORAGE_KEY = "aiea-content";
 
 const ContentContext = createContext<PageContent | null>(null);
@@ -43,15 +40,11 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         return;
       }
       const local = loadFromLocal();
-      if (local) setContent(local);
+      if (local) setContent(mergeContent(defaultContent, local));
     })();
   }, []);
 
   return <ContentContext.Provider value={content}>{children}</ContentContext.Provider>;
-}
-
-export function useContent() {
-  return useContext(ContentContext);
 }
 
 export function useContentValue(path: string): string {
@@ -63,6 +56,11 @@ export function useContentValue(path: string): string {
     val = val[key as keyof typeof val];
   }
   return typeof val === "string" ? val : "";
+}
+
+export function useContent(): PageContent {
+  const ctx = useContext(ContentContext);
+  return ctx ?? defaultContent;
 }
 
 export async function saveContent(content: PageContent): Promise<boolean> {
@@ -93,7 +91,7 @@ export async function loadContent(): Promise<PageContent | null> {
   return loadFromLocal();
 }
 
-function mergeContent(base: any, overrides: any): any {
+export function mergeContent(base: any, overrides: any): any {
   const result = { ...base };
   for (const key of Object.keys(overrides)) {
     const val = overrides[key];

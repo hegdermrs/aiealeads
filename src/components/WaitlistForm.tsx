@@ -18,6 +18,7 @@ export default function WaitlistForm({
   const [phase, setPhase] = useState<Phase>("idle");
   const checkRef = useRef<HTMLSpanElement>(null);
   const buttonText = useContentValue("hero.formButton");
+  const successMessage = useContentValue("form.successMessage");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -134,7 +135,7 @@ export default function WaitlistForm({
             </span>
           </span>
           <span style={SERIF} className="text-base sm:text-lg">
-            Thanks, we&rsquo;ll be in touch.
+            {successMessage || "Thanks, we\u2019ll be in touch."}
           </span>
         </div>
       )}

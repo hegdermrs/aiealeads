@@ -1,17 +1,20 @@
 import Reveal from "../components/Reveal";
-import { useContentValue } from "../content/ContentProvider";
+import { useContentValue, useContent } from "../content/ContentProvider";
+import { RenderHeading, RenderQuote } from "../utils/headings";
 
 const SERIF = { fontFamily: "'Instrument Serif', serif" } as const;
 
-const ETHOS = ["Honor", "Courage", "Commitment"];
-
 export default function Founder() {
+  const eyebrow = useContentValue("founder.eyebrow");
   const heading = useContentValue("founder.heading");
   const p1 = useContentValue("founder.paragraph1");
   const p2 = useContentValue("founder.paragraph2");
   const quote = useContentValue("founder.quote");
+  const c = useContent();
+  const ethosLabel = useContentValue("founder.ethosLabel");
+  const ETHOS = c.founder?.ethos ?? ["Honor", "Courage", "Commitment"];
   return (
-    <section id="manifesto" className="scroll-mt-20 px-6 py-28 md:py-32">
+    <section id="manifesto" className="scroll-mt-20 px-6 py-10 md:py-14">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
         {/* Visual */}
         <Reveal className="order-last flex justify-center lg:order-first">
@@ -27,12 +30,17 @@ export default function Founder() {
 
         {/* Copy */}
         <div>
-          <Reveal as="h2">
+          <Reveal>
+            <span className="text-sm font-medium uppercase tracking-widest text-emerald-300/80">
+              {eyebrow || "Who's running this"}
+            </span>
+          </Reveal>
+          <Reveal as="h2" className="mt-3">
             <span
               style={SERIF}
               className="block text-4xl leading-[1.08] tracking-tight text-white md:text-5xl"
             >
-              {heading || "I'm Antonio Centeno."}
+              <RenderHeading text={heading || "I'm Antonio Centeno."} />
             </span>
           </Reveal>
 
@@ -43,14 +51,13 @@ export default function Founder() {
               style={SERIF}
               className="border-l-2 border-emerald-400/70 pl-5 text-2xl leading-snug text-white md:text-3xl"
             >
-              {quote || "Ideas are cheap."}{" "}
-              <span className="text-emerald-300/90">Execution is what counts.</span>
+              <RenderQuote text={quote || "Ideas are cheap. Execution is what counts."} />
             </p>
           </Reveal>
 
           <Reveal className="mt-8 flex flex-nowrap items-center gap-3">
             <span className="shrink-0 text-sm text-white/50">
-              My Marine officer background sets the standard:
+              {ethosLabel || "My Marine officer background sets the standard:"}
             </span>
             {ETHOS.map((word) => (
               <span
