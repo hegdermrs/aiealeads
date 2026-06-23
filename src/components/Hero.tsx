@@ -45,11 +45,11 @@ export default function Hero({ onVideoReady, muxPlaybackId, headline, subtext }:
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 50% 8%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.7) 100%)",
+            "radial-gradient(120% 90% at 50% 8%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 35%, rgba(0,0,0,0.55) 100%)",
         }}
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-black/70 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[38%] bg-gradient-to-t from-black via-black/85 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[24%] bg-gradient-to-t from-black/80 via-black/60 to-transparent" />
 
       <Nav />
 
