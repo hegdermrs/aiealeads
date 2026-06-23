@@ -65,7 +65,7 @@ export default function Hero({ onVideoReady, muxPlaybackId, headline, subtext }:
           {subtext ?? (savedSubtext || "Get on the list now, and you'll be the first to know the moment we open the next AI Execution Accelerator.")}
         </p>
 
-        <div id="waitlist" className="w-full max-w-xl scroll-mt-24">
+        <div className="w-full max-w-xl">
           <WaitlistForm variant="hero" idPrefix="hero" />
         </div>
       </div>
